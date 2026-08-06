@@ -8,6 +8,9 @@ body {
     gap: 20px;
     padding: 1rem 2rem;
     height: 60px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
     
     background: white;
     border: 1px solid #e5e7eb;
@@ -15,6 +18,80 @@ body {
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
+.search-box {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.search-box input{
+    display: flex;
+    border: 1px solid #a1a2a5;
+    border-radius: 10px;
+    justify-self: center;
+    width: 50%;
+    transition: 0.2s;
+    font-size: 1rem;
+    padding-left: 5px;
+}
+
+
+.search-box button {
+    padding: 10px 20px;
+
+    border: none;
+    border-radius: 20px;
+
+    background: gray;
+    color: white;
+
+    font-size: 1rem;
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.search-box button:hover {
+    transform: translateY(-2px);
+}
+
+.search-section {
+    max-width: 700px;
+    margin: 80px auto;
+    text-align: center;
+}
+
+
+
+#pokedex {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.pokemon-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 20px;
+
+    text-align: center;
+
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pokemon-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+.pokemon-card img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+}
 
 .navbar ul li a {
     color: black;
