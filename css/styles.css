@@ -26,6 +26,10 @@ body {
     height: auto;
 }
 
+.pokemon-normal-sprite {
+    width: 200px;
+}
+
 .navbar ul {
     display: flex;
     align-items: center;
