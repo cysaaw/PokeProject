@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
-    <script src="js/main.js"></script>
-    <title>Poke</title>
+    <script src="js/main.js" defer></script>
+    <title>Home</title>
 </head>
 <body>
     <div class="container">
@@ -22,11 +22,14 @@
         <div class="site">
             <div class="search-section">
                 <div class="search-box">
-                    <input type="text" placeholder="Search Pokémon...">
-                    <button onclick="">
+                    <input class="input-text" type="text" placeholder="Search Pokémon...">
+                    <button class="search-button">
                         Search
                     </button>
                 </div>
+            </div>
+            <div id="pokemon-display">
+                <h1 id="pokemon-name"></h1>
             </div>
         </div>
     </div>

@@ -8,8 +8,9 @@ async function fetchAllPokemon() {
         const response = await fetch (pokemon.url);
         const details = await response.json();
 
-        displayPokemon(details);
+        displayPokemonCard(details);
     }
 }
+
 
 fetchAllPokemon();

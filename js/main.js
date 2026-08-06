@@ -1,6 +1,6 @@
 const BASE_URL = "https://pokeapi.co/api/v2/";
 
-function displayPokemon(pokemon) {
+function displayPokemonCard(pokemon) {
     document.getElementById("pokedex").innerHTML += `
     <div class="pokemon-card">
         <h2>${pokemon.name}</h2>
@@ -9,4 +9,22 @@ function displayPokemon(pokemon) {
     </div>
     `;
 }
+
+function renderPokemonSearchResult(pokemon) {
+    const nameDisplay = document.getElementById("pokemon-name");
+
+    nameDisplay.innerHTML = pokemon.name;
+}
+
+async function fetchPokemon() {
+    const input = document.querySelector(".input-text");
+    const name = input.value;
+
+    const response = await fetch(`${BASE_URL}pokemon/${name}`);
+    const data = await response.json();
+
+    renderPokemonSearchResult(data);
+}
+
+document.querySelector(".search-button").addEventListener("click", fetchPokemon);
 
