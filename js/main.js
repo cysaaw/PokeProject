@@ -1,17 +1,8 @@
 const BASE_URL = "https://pokeapi.co/api/v2/";
 
-function displayPokemonCard(pokemon) {
-    document.getElementById("pokedex").innerHTML += `
-    <div class="pokemon-card">
-        <h1>#${pokemon.id}</h2>
-        <img src ="${pokemon.sprites.other["official-artwork"].front_default}">
-        <h2>${pokemon.name}</h2>
-        
-        
-    </div>
-    `;
-}
 
+
+// Display Pokemon info
 function renderPokemonSearchResult(pokemon) {
     const nameUpper = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
     const pokemonDisplay = document.getElementById("pokemon-display");
@@ -25,7 +16,7 @@ function renderPokemonSearchResult(pokemon) {
         <p>#${pokemon.id}</p>
         <p>${nameUpper}</p>
         <h4>Type</h4>
-        <p>${pokemon.types.map(type => type.type.name).join(", ")}</p>
+        <p>${pokemon.types.map(type => type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)).join(", ")}</p>
         <h4>Height</h4>
         <p>${pokemon.height / 10} m</p>
         <h4>Weight</h4>
@@ -49,8 +40,11 @@ function renderPokemonSearchResult(pokemon) {
     statsDisplay.innerHTML = "<h3>Stats</h3>";
 
     pokemon.stats.forEach(stat => {
+
+        const upperName = stat.stat.name.charAt(0).toUpperCase() + stat.stat.name.slice(1);
+
         statsDisplay.innerHTML += `
-            <p>${stat.stat.name}: ${stat.base_stat}
+            <p>${upperName}: ${stat.base_stat}</p>
         `;
     })
     
@@ -58,7 +52,8 @@ function renderPokemonSearchResult(pokemon) {
     
 }
 
-async function fetchPokemon() {
+// Search
+async function fetchPokemonBySearch() {
     const input = document.querySelector(".input-text");
     const name = input.value;
 
@@ -68,5 +63,5 @@ async function fetchPokemon() {
     renderPokemonSearchResult(data);
 }
 
-document.querySelector(".search-button").addEventListener("click", fetchPokemon);
+document.querySelector(".search-button").addEventListener("click", fetchPokemonBySearch);
 
