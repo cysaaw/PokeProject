@@ -1,15 +1,28 @@
-const BASE_URL = "https://pokeapi.co/api/v2/";
-
-
 
 // Display Pokemon info
-function renderPokemonSearchResult(pokemon) {
-    const nameUpper = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
+function renderPokemon(pokemon) {
+    
+
+    displayPokemon();
+
+    renderPokemonLeftSide(pokemon);
+    renderPokemonMiddle(pokemon);
+    renderPokemonRightSide(pokemon);
+    
+    
+
+    
+}
+
+function displayPokemon() {
     const pokemonDisplay = document.getElementById("pokemon-display");
     pokemonDisplay.classList.add("active");
+}
 
-    // Left stuff
+function renderPokemonLeftSide(pokemon) {
+
     const pokemonMiscDisplay = document.querySelector(".pokemon-information");
+    const nameUpper = makeUpperCase(pokemon.name);
 
     pokemonMiscDisplay.innerHTML = `
         <h3>Information</h3>
@@ -24,8 +37,10 @@ function renderPokemonSearchResult(pokemon) {
         
         
     `;
+}
 
-    // Middle search stuff
+function renderPokemonMiddle(pokemon) {
+    const nameUpper = makeUpperCase(pokemon.name);
     const nameDisplay = document.getElementById("pokemon-name");
     const imageDisplay = document.getElementById("pokemon-image");
     const shinyimageDisplay = document.getElementById("pokemon-image-shiny");
@@ -33,34 +48,35 @@ function renderPokemonSearchResult(pokemon) {
     nameDisplay.textContent = nameUpper;
     imageDisplay.src = pokemon.sprites.other["official-artwork"].front_default;
     shinyimageDisplay.src = pokemon.sprites.other["official-artwork"].front_shiny;
+}
 
-    // Right stuff
+function renderPokemonRightSide(pokemon) {
     const statsDisplay = document.querySelector(".pokemon-stats");
 
     statsDisplay.innerHTML = "<h3>Stats</h3>";
 
     pokemon.stats.forEach(stat => {
 
-        const upperName = stat.stat.name.charAt(0).toUpperCase() + stat.stat.name.slice(1);
+        const upperName = makeUpperCase(stat.stat.name);
 
         statsDisplay.innerHTML += `
             <p>${upperName}: ${stat.base_stat}</p>
         `;
     })
-    
-
-    
 }
 
 // Search
 async function fetchPokemonBySearch() {
     const input = document.querySelector(".input-text");
-    const name = input.value;
+    const name = input.value.trim();
 
-    const response = await fetch(`${BASE_URL}pokemon/${name}`);
-    const data = await response.json();
+    const pokemon = await fetchPokemon(name);
 
-    renderPokemonSearchResult(data);
+    renderPokemon(pokemon);
+}
+
+function makeUpperCase(text) {
+    return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
 document.querySelector(".search-button").addEventListener("click", fetchPokemonBySearch);
