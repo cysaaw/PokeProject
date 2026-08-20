@@ -29,7 +29,7 @@ function renderPokemonLeftSide(pokemon) {
         <p>#${pokemon.id}</p>
         <p>${nameUpper}</p>
         <h4>Type</h4>
-        <p>${pokemon.types.map(type => type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)).join(", ")}</p>
+        <p>${pokemon.types.map(type => makeUpperCase(type.type.name)).join(", ")}</p>
         <h4>Height</h4>
         <p>${pokemon.height / 10} m</p>
         <h4>Weight</h4>
