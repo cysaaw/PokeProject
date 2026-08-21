@@ -70,6 +70,8 @@ async function fetchPokemonBySearch() {
     const input = document.querySelector(".input-text");
     const name = input.value.trim();
 
+    if (!name) return;
+
     const pokemon = await fetchPokemon(name);
 
     renderPokemon(pokemon);
