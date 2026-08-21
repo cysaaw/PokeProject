@@ -81,3 +81,18 @@ function makeUpperCase(text) {
 
 document.querySelector(".search-button").addEventListener("click", fetchPokemonBySearch);
 
+async function loadPokemonFromURL() {
+
+    const params = new URLSearchParams(window.location.search);
+
+    const pokemonName = params.get("pokemon");
+
+    if (!pokemonName) return;
+
+    const pokemon = await fetchPokemon(pokemonName);
+
+    renderPokemon(pokemon);
+
+}
+
+loadPokemonFromURL();

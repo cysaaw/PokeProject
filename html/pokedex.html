@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokédex</title>
     <link rel="stylesheet" href="../css/styles.css">
-    <script src="../js/api.js"></script>
-    <script src="../js/main.js"></script>
-    <script src="../js/pokedex.js"></script>
+    
 </head>
 <body>
     <div class="container">
@@ -24,9 +22,26 @@
                 </ul>
             </div>
         </div>
+        <div class="pokedex-options">
+            <label for="generation">Generation</label>
+            <select name="generation" class="gen-selector">
+                <option value=1>1 - Kanto</option>
+                <option value=2>2 - Johto</option>
+                <option value=3>3 - Hoenn</option>
+                <option value=4>4 - Sinnoh</option>
+                <option value=5>5 - Unova</option>
+                <option value=6>6 - Kalos</option>
+                <option value=7>7 - Alola</option>
+                <option value=8>8 - Galar</option>
+                <option value=9>9 - Paldea</option>
+            </select>
+        </div>
         <div id="pokedex">
                   
         </div>
     </div>
 </body>
+<script src="../js/api.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/pokedex.js"></script>
 </html>

@@ -41,19 +41,54 @@ async function fetchPokemonBatch() {
 
     offset += amount;
     isLoading = false;
+
+    // If scroll cant be triggered, load more immediately
+    if (document.documentElement.scrollHeight <= window.innerHeight) {
+        await fetchPokemonBatch();
+    }
 }
 
 window.addEventListener("scroll", () => {
     if (
         window.innerHeight + window.scrollY >=
-        document.documentElement.scrollHeight - 500
+        document.documentElement.scrollHeight - 1000
     ) {
         fetchPokemonBatch();
     }
 }); 
 
 
+const genSelector = document.querySelector(".gen-selector");
+let currentGen = 1;
 
 
-fetchGeneration(1);
+genSelector.addEventListener("change", (event) => {
+    currentGen = Number(event.target.value);
+
+    document.getElementById("pokedex").innerHTML = "";
+
+    isLoading = false;
+
+    fetchGeneration(currentGen);
+    fetchPokemonBatch();
+})
+
+const pokedex = document.getElementById("pokedex");
+
+pokedex.addEventListener("click", (event) => {
+
+    const card = event.target.closest(".pokemon-card");
+
+    if (!card) return;
+
+    const pokemonName = card.dataset.name;
+
+    window.location.href = `../index.html?pokemon=${pokemonName}`;
+
+});
+
+
+
+
+fetchGeneration(currentGen);
 fetchPokemonBatch();
